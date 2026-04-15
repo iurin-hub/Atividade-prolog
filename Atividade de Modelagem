@@ -1,0 +1,49 @@
+Nomes:
+Iuri Nunes 
+Gustavo Paiva
+
+Problema da travessia da ponte
+
+Há 4 pessoas: cientista, zelador, professora e aluno. Que precisam passar pela ponte.
+Cada um tem um tempo de travessia:
+
+aluno: leva 1 minuto para cruzar a ponte
+professora: leva 2 minutos
+zelador: 5 minutos
+cientista: 10 minutos
+
+O problema é: qual a sequência de travessia para que o tempo total seja no máximo de 17 minutos.
+Contudo, para cruzar a ponte é preciso usar uma lanterna e no máximo duas pessoas podem cruzar a ponte. Qualquer pessoa cruzando a ponte precisa segurar a lanterna.
+
+Trabalho avaliado é a modelagem:
+	1) Estados
+	2) Regras de Transição
+	3) Restrições
+	4) Visitados
+	5) Função objetivo
+
+1)Estados do Problema da travessia da ponte
+Classe; atributos; tipos
+Al, Pr, Ze, Ci, T; string, string, string, string, int
+Estado inicial: todos no lado esquerdo da ponte;
+Estados finais: todos no lado direito da ponte com T<= 17;
+
+2)Regras de transição
+	AlPrd
+	AlZed
+	AlCid
+	PrZed
+	PrCid
+  	ZeCid
+	voltarAle
+	voltarPre
+	voltarZee
+	voltarCie
+
+3)Restrições:
+    
+4)Visitados:
+	“[Zee l Cie l Ald l Prd] && T==3” “[Zee l Cie l Ale l Prd] && T==4” 
+
+5)Função Objetivo:
+	Al == d && Pr  == d && Ze  == d && Ci == d && T<= 17min
