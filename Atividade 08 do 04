@@ -1,0 +1,172 @@
+Atividade 01: 
+
+disciplina("Algoritmos A").
+disciplina("Inteligência Artificial").
+disciplina("Motores de Jogos I").
+disciplina("Motores de Jogos II").
+
+pre_requisito("Motores de Jogos I", "Motores de Jogos II"). 
+pre_requisito("Algoritmos A", "Inteligencia Artificial").
+
+ja_cursou("Lucas", "Motores de Jogos I").
+ja_cursou("Gabriel", "Algoritmos A").
+
+pode_cursar(Aluno, Disciplina) :-
+    ja_cursou(Aluno, PreRequisito),
+    pre_requisito(PreRequisito, Disciplina).
+
+Chamar: pode_cursar("Gabriel", "Inteligencia Artificial").
+
+Atividade 02:
+
+nota("Alexandre", "Inteligencia Artificial", 7).
+nota("Cesar", "Inteligencia Artificial", 5).
+
+status(Aluno, Disciplina, Resposta) :-
+    nota(Aluno, Disciplina, Nota),
+    Nota =< 5,
+    Resposta = "Reprovado". 
+
+status(Aluno, Disciplina, Resposta) :-
+    nota(Aluno, Disciplina, Nota),
+    Nota >= 6, 
+    Resposta = "Aprovado".
+
+Chamar: status("Alexandre", "Inteligencia Artificial", X).
+
+Atividade 03: 
+
+estrada(santamaria, portoalegre).
+         
+pode_viajar(De, Para) :- 
+    estrada(De, Para).
+
+Chamar: pode_viajar(santamaria, portoalegre)
+
+Atividade 04: 
+
+esta_em("Garfo", "Cozinha").
+esta_em("Colher", "Quarto").
+esta_em("Carregador", "Sala").
+
+comodo_em("Cozinha", "Casa do Luiz").
+comodo_em("Quarto", "Casa do Pedro").
+comodo_em("Sala", "Casa do Joao").
+
+localizacao_geral(Objeto, Lugar) :-
+    esta_em(Objeto, Lugar).
+
+localizacao_geral(Objeto, Lugar) :-
+    esta_em(Objeto, Intermediario),
+    comodo_em(Intermediario, Lugar).
+
+Chamar: localizacao_geral("Carregador", X).
+
+Atividade 05: 
+
+ingrediente("Risoto", "Arroz").
+ingrediente("Risoto", "Carne").
+ingrediente("Risoto", "Queijo").
+ingrediente("Sopa", "Cenoura").
+ingrediente("Sopa", "Batata").
+ingrediente("Sopa", "Milho").
+
+vegano("Arroz").
+vegano("Batata").
+vegano("Milho").
+vegano("Cenoura").
+
+prato_vegano(Prato) :-
+    not((ingrediente(Prato, Item), not(vegano(Item)))).
+
+Chamar: prato_vegano("Risoto").
+
+Atividade 06: 
+
+usuario_gosta("Joao", "Açao").
+usuario_gosta("Maria", "Romance").
+usuario_gosta("Joaquina", "Novela").
+usuario_gosta("Cesar", "Crime").
+
+filme("TopGun", "Crime").
+filme("Avatar", "Açao").
+filme("Logan", "Romance").
+filme("Matrix", "Novela").
+
+recomendar(Filme, Usuario) :-
+    usuario_gosta(Usuario, Intermediario),
+    filme(Filme, Intermediario).
+
+Chamar: recomendar(X, "Maria").
+
+Atividade 07:
+
+sobre(bloco1, bloco2).
+sobre(bloco2, bloco3).
+sobre(bloco4, bloco5).
+sobre(bloco6, bloco7).
+
+no_chao(bloco1).
+no_chao(bloco4).
+no_chao(bloco6).
+
+abaixo(x, y) :-
+    sobre(y, x).
+
+bloco_livre(x) :-
+    no_chao(x).
+
+Chamar: no_chao(bloco6)
+
+Atividade 08:
+
+tem_penas(pinguim).
+tem_penas(galinha).
+tem_pelo(macaco).
+tem_pelo(leao).
+tem_glandulasmamarias(leao).
+tem_glandulasmamarias(macaco).
+poe_ovos(pinguim).
+poe_ovos(galinha).
+
+ave(X) :-
+    tem_penas(X),
+    poe_ovos(X).
+
+mamifero(X) :-
+    tem_pelo(X),
+    tem_glandulasmamarias(X).
+
+Chamar: ave(galinha)
+	mamifero(leao)
+
+Atividade 09:
+
+cliente("Pedro", 20).
+cliente("Marcelo", 70).
+cliente("Joana", 43).
+produto("Gloss", 45).
+produto("Perfume", 38).
+produto("Desodorante", 12).
+
+pode_comprar(Nome, Item) :-
+    cliente(Nome, Saldo),
+	produto(Item, Preco),
+    Saldo >= Preco.
+
+Chamar: pode_comprar("Joana", "Perfume")
+
+Atividade 10:
+
+venceu(jogador1, jogador2).
+venceu(jogador2, jogador3).
+venceu(jogador4, jogador5).
+venceu(jogador6, jogador7).
+venceu(jogador8, jogador9).
+venceu(jogador7, jogador8).
+
+invicto(X) :-
+	venceu(X, _),
+	not(venceu(_, X)).
+
+Chamar: invicto(jogador9)
